@@ -1,16 +1,44 @@
 // @flow
-import React, { Component } from 'react';
+// This file bootstraps the app with the boilerplate necessary
+// to support hot reloading in Redux
+import React from 'react'; // , { PropTypes } from 'react';
+// import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+// import FuelSavingsApp from '../components/FuelSavingsApp/FuelSavingsApp';
+import Solvers from './Solvers';
+// import * as FuelSavingsActions from '../actions/fuelSavingsActions';
 
-export default class App extends Component {
-  props: {
-    children: HTMLElement
-  };
-
+class App extends React.Component {
   render() {
+    // const { actions } = this.props;
+
     return (
-      <div>
-        {this.props.children}
-      </div>
+      <Solvers />
+      // <FuelSavingsApp fuelSavingsAppState={fuelSavingsAppState} actions={actions} />
     );
   }
 }
+
+/*
+App.propTypes = {
+  actions: PropTypes.object.isRequired,
+  fuelSavingsAppState: PropTypes.object.isRequired
+};
+*/
+
+function mapStateToProps(state) {
+  return {
+    // fuelSavingsAppState: state.fuelSavingsAppState
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    // actions: bindActionCreators(FuelSavingsActions, dispatch)
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
